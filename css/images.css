@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+
+.myimg-12 {
+	width: 7%;
+}
+
+.myfigure {
+	width: 20%;
+	float: left;
+	margin: 7% 1% 5% 14%;
+
+}
+
+figcaption {
+	text-align: center;
+}
+
+.mainimg {
+	width: 50%;
+	margin: 7% 25% 1% 25%;
+}
+
+.secimg {
+	width: 50%;
+	margin: 7% 5% 1% 45%;
+}
+
+.thirdimg {
+	width: 50%;
+	margin: 7% 45% 1% 5%;
+}
+
+.iconimg {
+	width: 100%;
+}

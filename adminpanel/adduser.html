@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add User</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <style type="text/css">
+        body{ font: 14px sans-serif; text-align: center; }
+    </style>
+</head>
+ 
+<body>
+   <div class="container">
+   <a href="admin.php" class="btn btn-info">Admin Panel</a> <a href="view.php" class="btn btn-info">View Groups, Users and Results</a> <a href="logout.php" class="btn btn-danger">Logout</a>
+   </div>
+   <br/><br/>
+   <div class="container">
+   	 <form action="adduser.php" method="post" name="form2">
+        <table class="table table-bordered">
+            <tr> 
+                <td>User Name</td>
+                <td><input type="text" name="usernameform"></td>
+            </tr>
+            <tr> 
+                <td>User Password</td>
+                <td><input type="text" name="passwordform"></td>
+            </tr>
+            <tr> 
+                <td></td>
+                <td><input class="btn btn-success" type="submit" name="Submit" value="Add"></td>
+            </tr>
+        </table>
+    </form>
+    </div>
+</body>
+</html>

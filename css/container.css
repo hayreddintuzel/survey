@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+
+.empty-container {
+	height: 50px;
+}
+
+.empty-container-fluid {
+	height: 50px;
+}
+
+.empty-container-fluid_3{
+	height: 150px;
+}
+#myrow.row {
+	padding-left: 13%;
+}
+
+#myrow1.row {
+	padding-left: 35%;
+}
+
+#myrow2.row {
+	position: relative;
+}
+
+#main.container {
+	margin-bottom: 10%;
+	margin-top: 5%;
+}
+
+.entrybutton {
+	position: relative;
+	left:35%;
+}
+
+div {
+	text-align: center;
+}
+
+body {
+    margin-top: 3%;
+	padding-bottom: 15%;
+}

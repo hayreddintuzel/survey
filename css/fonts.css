@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+
+.myheadings {
+	text-align: center;
+}
+
+p#boldparaghraph {
+	font-weight: 900;
+}
+
+#login a {
+	margin-left: 45%;
+}
+
+.radio-inline {
+	vertical-align: middle; 
+}
