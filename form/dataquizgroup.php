@@ -2,436 +2,425 @@
 
 require_once '../config.ini.php';
 //for turkish characters
-$sql = "SELECT no, text, lang FROM questions";
-$sql_utf1= "SET NAMES 'utf8'";
-$sql_utf2= "CHARSET 'utf8';";
+$sql = 'SELECT no, text, lang FROM questions';
+$sql_utf1 = "SET NAMES 'utf8'";
+$sql_utf2 = "CHARSET 'utf8';";
 $conn->query($sql_utf1);
 $conn->query($sql_utf2);
 $result = $conn->query($sql);
 
 //motivasyon türlerini  puanlayacak değişkenler oluşturuldu.
-$motivation_point = array("demystifier"=>"0",
-						  "watchdog"=>"0",
-						  "activist"=>"0",
-						  "professor"=>"0",
-						  "professional"=>"0",
-						  "teacher"=>"0",
-						  "techie"=>"0",
-						  "spirit"=>"0",
-						  "motivator"=>"0",
-						  "trendsetter"=>"0",
-						  "alt"=>"0",
-						  "tastemaker"=>"0");
-				  
+$motivation_point = ['demystifier'      => '0',
+                          'watchdog'    => '0',
+                          'activist'    => '0',
+                          'professor'   => '0',
+                          'professional'=> '0',
+                          'teacher'     => '0',
+                          'techie'      => '0',
+                          'spirit'      => '0',
+                          'motivator'   => '0',
+                          'trendsetter' => '0',
+                          'alt'         => '0',
+                          'tastemaker'  => '0', ];
 
 // total point calculating for demystifier
-$motivation_point['demystifier']=$_POST["opt_q1"] + $_POST["opt_q2"] + $_POST["opt_q25"] + $_POST["opt_q26"];
+$motivation_point['demystifier'] = $_POST['opt_q1'] + $_POST['opt_q2'] + $_POST['opt_q25'] + $_POST['opt_q26'];
 
 // total point calculating for watchdog
-$motivation_point['watchdog']=$_POST["opt_q3"] + $_POST["opt_q4"] + $_POST["opt_q27"] + $_POST["opt_q28"];
+$motivation_point['watchdog'] = $_POST['opt_q3'] + $_POST['opt_q4'] + $_POST['opt_q27'] + $_POST['opt_q28'];
 
 // total point calculating for activist
-$motivation_point['activist']=$_POST["opt_q5"] + $_POST["opt_q6"] + $_POST["opt_q29"] + $_POST["opt_q30"];
+$motivation_point['activist'] = $_POST['opt_q5'] + $_POST['opt_q6'] + $_POST['opt_q29'] + $_POST['opt_q30'];
 
 // total point calculating for professor
-$motivation_point['professor']=$_POST["opt_q7"] + $_POST["opt_q8"] + $_POST["opt_q31"] + $_POST["opt_q32"];
+$motivation_point['professor'] = $_POST['opt_q7'] + $_POST['opt_q8'] + $_POST['opt_q31'] + $_POST['opt_q32'];
 
 // total point calculating for professional
-$motivation_point['professional']=$_POST["opt_q9"] + $_POST["opt_q10"] + $_POST["opt_q33"] + $_POST["opt_q34"];
+$motivation_point['professional'] = $_POST['opt_q9'] + $_POST['opt_q10'] + $_POST['opt_q33'] + $_POST['opt_q34'];
 
 // total point calculating for teacher
-$motivation_point['teacher']=$_POST["opt_q11"] + $_POST["opt_q12"] + $_POST["opt_q35"] + $_POST["opt_q36"];
+$motivation_point['teacher'] = $_POST['opt_q11'] + $_POST['opt_q12'] + $_POST['opt_q35'] + $_POST['opt_q36'];
 
 // total point calculating for techie
-$motivation_point['techie']=$_POST["opt_q13"] + $_POST["opt_q14"] + $_POST["opt_q37"] + $_POST["opt_q38"];
+$motivation_point['techie'] = $_POST['opt_q13'] + $_POST['opt_q14'] + $_POST['opt_q37'] + $_POST['opt_q38'];
 
 // total point calculating for spirit
-$motivation_point['spirit']=$_POST["opt_q15"] + $_POST["opt_q16"] + $_POST["opt_q39"] + $_POST["opt_q40"];
+$motivation_point['spirit'] = $_POST['opt_q15'] + $_POST['opt_q16'] + $_POST['opt_q39'] + $_POST['opt_q40'];
 
 // total point calculating for motivator
-$motivation_point['motivator']=$_POST["opt_q17"] + $_POST["opt_q18"] + $_POST["opt_q41"] + $_POST["opt_q42"];
+$motivation_point['motivator'] = $_POST['opt_q17'] + $_POST['opt_q18'] + $_POST['opt_q41'] + $_POST['opt_q42'];
 
 // total point calculating for trendsetter
-$motivation_point['trendsetter']=$_POST["opt_q19"] + $_POST["opt_q20"] + $_POST["opt_q43"] + $_POST["opt_q44"];
+$motivation_point['trendsetter'] = $_POST['opt_q19'] + $_POST['opt_q20'] + $_POST['opt_q43'] + $_POST['opt_q44'];
 
 // total point calculating for alt
-$motivation_point['alt']=$_POST["opt_q21"] + $_POST["opt_q22"] + $_POST["opt_q45"] + $_POST["opt_q46"];
+$motivation_point['alt'] = $_POST['opt_q21'] + $_POST['opt_q22'] + $_POST['opt_q45'] + $_POST['opt_q46'];
 
 // total point calculating for tastemaker
-$motivation_point['tastemaker']=$_POST["opt_q23"] + $_POST["opt_q24"] + $_POST["opt_q47"] + $_POST["opt_q48"];
-
+$motivation_point['tastemaker'] = $_POST['opt_q23'] + $_POST['opt_q24'] + $_POST['opt_q47'] + $_POST['opt_q48'];
 
 //we are calculating protect and empowering points
 
-$protect_point=$_POST["opt_q1"]+$_POST["opt_q2"]+$_POST["opt_q3"]+$_POST["opt_q4"]+$_POST["opt_q5"]+$_POST["opt_q6"]+$_POST["opt_q7"]+$_POST["opt_q8"]+$_POST["opt_q9"]+$_POST["opt_q10"]+$_POST["opt_q11"]+$_POST["opt_q12"]+$_POST["opt_q13"]+$_POST["opt_q14"]+$_POST["opt_q15"]+$_POST["opt_q16"]+$_POST["opt_q17"]+$_POST["opt_q18"]+$_POST["opt_q19"]+$_POST["opt_q20"]+$_POST["opt_q21"]+$_POST["opt_q22"]+$_POST["opt_q23"]+$_POST["opt_q24"];
+$protect_point = $_POST['opt_q1'] + $_POST['opt_q2'] + $_POST['opt_q3'] + $_POST['opt_q4'] + $_POST['opt_q5'] + $_POST['opt_q6'] + $_POST['opt_q7'] + $_POST['opt_q8'] + $_POST['opt_q9'] + $_POST['opt_q10'] + $_POST['opt_q11'] + $_POST['opt_q12'] + $_POST['opt_q13'] + $_POST['opt_q14'] + $_POST['opt_q15'] + $_POST['opt_q16'] + $_POST['opt_q17'] + $_POST['opt_q18'] + $_POST['opt_q19'] + $_POST['opt_q20'] + $_POST['opt_q21'] + $_POST['opt_q22'] + $_POST['opt_q23'] + $_POST['opt_q24'];
 
-$empower_point=$_POST["opt_q25"]+$_POST["opt_q26"]+$_POST["opt_q27"]+$_POST["opt_q28"]+$_POST["opt_q29"]+$_POST["opt_q30"]+$_POST["opt_q31"]+$_POST["opt_q32"]+$_POST["opt_q33"]+$_POST["opt_q34"]+$_POST["opt_q35"]+$_POST["opt_q36"]+$_POST["opt_q37"]+$_POST["opt_q38"]+$_POST["opt_q39"]+$_POST["opt_q40"]+$_POST["opt_q41"]+$_POST["opt_q42"]+$_POST["opt_q43"]+$_POST["opt_q44"]+$_POST["opt_q45"]+$_POST["opt_q46"]+$_POST["opt_q47"]+$_POST["opt_q48"];
+$empower_point = $_POST['opt_q25'] + $_POST['opt_q26'] + $_POST['opt_q27'] + $_POST['opt_q28'] + $_POST['opt_q29'] + $_POST['opt_q30'] + $_POST['opt_q31'] + $_POST['opt_q32'] + $_POST['opt_q33'] + $_POST['opt_q34'] + $_POST['opt_q35'] + $_POST['opt_q36'] + $_POST['opt_q37'] + $_POST['opt_q38'] + $_POST['opt_q39'] + $_POST['opt_q40'] + $_POST['opt_q41'] + $_POST['opt_q42'] + $_POST['opt_q43'] + $_POST['opt_q44'] + $_POST['opt_q45'] + $_POST['opt_q46'] + $_POST['opt_q47'] + $_POST['opt_q48'];
 
 //finding max motivatiopn_point
-$max= max($motivation_point);
+$max = max($motivation_point);
 
 //finding top motivation name
-$top_motivation= array_search(max($motivation_point),$motivation_point);
+$top_motivation = array_search(max($motivation_point), $motivation_point);
 
 //we are temporary storage our top motivations for putting back
-$temp1=$motivation_point[$top_motivation];
+$temp1 = $motivation_point[$top_motivation];
 
 //top motivating point equals to zero for finding second max motivation point and motivation name
-$motivation_point[$top_motivation]=0;
+$motivation_point[$top_motivation] = 0;
 
-$sec_max= max($motivation_point);
+$sec_max = max($motivation_point);
 
-$sec_motivation= array_search(max($motivation_point),$motivation_point);
+$sec_motivation = array_search(max($motivation_point), $motivation_point);
 
 //we are temporary storage our top motivations for putting back
-$temp2=$motivation_point[$sec_motivation];
+$temp2 = $motivation_point[$sec_motivation];
 
-$motivation_point[$sec_motivation]=0;
+$motivation_point[$sec_motivation] = 0;
 
 $third_max = max($motivation_point);
 
-$third_motivation= array_search(max($motivation_point),$motivation_point);
+$third_motivation = array_search(max($motivation_point), $motivation_point);
 
 //we put back our temp variables
 
-$motivation_point[$top_motivation]=$temp1;
-$motivation_point[$sec_motivation]=$temp2;
+$motivation_point[$top_motivation] = $temp1;
+$motivation_point[$sec_motivation] = $temp2;
 
 //we ensure html injection
-		$name=htmlentities($_POST["name"]);
-		$groupname=htmlentities($_POST["g_name"]);
-		$grouppin=htmlentities($_POST["pin"]);
-
+        $name = htmlentities($_POST['name']);
+        $groupname = htmlentities($_POST['g_name']);
+        $grouppin = htmlentities($_POST['pin']);
 
 //if user input his/her name, group name and pin
-if (isset($_POST["name"]) && isset($_POST["g_name"]) && isset($_POST["pin"]) )
-{
-	if(!empty($_POST["name"]) && !empty($_POST["g_name"]) && !empty($_POST["pin"]) )
-	{
-		
-		// we are looking for group name and pin is right?
-		$query_for_group_name="SELECT `group_name`, `group_pin` FROM `groups` WHERE `group_name`='$groupname' AND `group_pin` ='$grouppin'";
-		$result=mysqli_query($conn,$query_for_group_name);
-		while ($groupcontrol=mysqli_fetch_array($result))
-		{
-		$state1=$groupcontrol['group_name'];
-		$state2=$groupcontrol['group_pin'];
-		}
-	
-		if(($state1==$groupname) && ($state2==$grouppin))
-		{	
-			//yes, group name and pin is right
-			$i=0;
-			//assigning associative motivation_point array to another array for SQL query
-			foreach ($motivation_point as $key => $val)
-			{
-				$motivation_point_t[$i]=$val;
-				$i++;
-			}
+if (isset($_POST['name']) && isset($_POST['g_name']) && isset($_POST['pin'])) {
+    if (!empty($_POST['name']) && !empty($_POST['g_name']) && !empty($_POST['pin'])) {
 
-		
-			//if group name and pin is right, we can add user data to our result table
-			$query_for_adding_results="INSERT INTO `results` (`id`, `group_name`, `user_name`, `motivation_one`, `motivation_two`, `motivation_three`, `demystifier_point`, `watchdog_point`, `activist_point`, `professor_point`, `professional_point`, `teacher_point`, `techie_point`, `spirit_point`, `motivator_point`, `trendsetter_point`, `alt_point`, `tastemaker_point`) VALUES (NULL, '$groupname', '$name', '$top_motivation', '$sec_motivation', '$third_motivation', '$motivation_point_t[0]', '$motivation_point_t[1]', '$motivation_point_t[2]', '$motivation_point_t[3]', '$motivation_point_t[4]', '$motivation_point_t[5]', '$motivation_point_t[6]', '$motivation_point_t[7]', '$motivation_point_t[8]', '$motivation_point_t[9]', '$motivation_point_t[10]', '$motivation_point_t[11]')";
-			
-			// we are adding infos about user to our DB
-			if(mysqli_query($conn,$query_for_adding_results))
-			{
-				echo "<div><p class='text-succes'>Anket Sonucunuz Güvenli bir şekilde Veritabanımıza Kaydedilmiştir, Teşekkürler</p></div>";
-			}
-			
-		} else
-		{
-			echo "<h2>Lütfen Size verilen grup adı ve pin'ini kontrol ediniz!";
-			die();
-		}
-	}
-	else
-	{
-		echo "<h2>Lütfen Tüm alanlar eksiksiz doldurunuz!</h2>";
-		die();
-	}
-} else
-{
-	echo "<h2>Lütfen Tüm alanlar eksiksiz doldurup tuşa basınız!</h2>";
-	die();
+        // we are looking for group name and pin is right?
+        $query_for_group_name = "SELECT `group_name`, `group_pin` FROM `groups` WHERE `group_name`='$groupname' AND `group_pin` ='$grouppin'";
+        $result = mysqli_query($conn, $query_for_group_name);
+        while ($groupcontrol = mysqli_fetch_array($result)) {
+            $state1 = $groupcontrol['group_name'];
+            $state2 = $groupcontrol['group_pin'];
+        }
+
+        if (($state1 == $groupname) && ($state2 == $grouppin)) {
+            //yes, group name and pin is right
+            $i = 0;
+            //assigning associative motivation_point array to another array for SQL query
+            foreach ($motivation_point as $key => $val) {
+                $motivation_point_t[$i] = $val;
+                $i++;
+            }
+
+            //if group name and pin is right, we can add user data to our result table
+            $query_for_adding_results = "INSERT INTO `results` (`id`, `group_name`, `user_name`, `motivation_one`, `motivation_two`, `motivation_three`, `demystifier_point`, `watchdog_point`, `activist_point`, `professor_point`, `professional_point`, `teacher_point`, `techie_point`, `spirit_point`, `motivator_point`, `trendsetter_point`, `alt_point`, `tastemaker_point`) VALUES (NULL, '$groupname', '$name', '$top_motivation', '$sec_motivation', '$third_motivation', '$motivation_point_t[0]', '$motivation_point_t[1]', '$motivation_point_t[2]', '$motivation_point_t[3]', '$motivation_point_t[4]', '$motivation_point_t[5]', '$motivation_point_t[6]', '$motivation_point_t[7]', '$motivation_point_t[8]', '$motivation_point_t[9]', '$motivation_point_t[10]', '$motivation_point_t[11]')";
+
+            // we are adding infos about user to our DB
+            if (mysqli_query($conn, $query_for_adding_results)) {
+                echo "<div><p class='text-succes'>Anket Sonucunuz Güvenli bir şekilde Veritabanımıza Kaydedilmiştir, Teşekkürler</p></div>";
+            }
+        } else {
+            echo "<h2>Lütfen Size verilen grup adı ve pin'ini kontrol ediniz!";
+            die();
+        }
+    } else {
+        echo '<h2>Lütfen Tüm alanlar eksiksiz doldurunuz!</h2>';
+        die();
+    }
+} else {
+    echo '<h2>Lütfen Tüm alanlar eksiksiz doldurup tuşa basınız!</h2>';
+    die();
 }
 
-switch ($top_motivation)
-{
-	case 'demystifier':
-		$adress1="Demystifier.png";
-		break;
-	case 'watchdog':
-		$adress1="Watchdog.png";
-		break;
-	case 'professor':
-		$adress1="Professor.png";
-		break;
-	case 'professional':
-		$adress1="Professional.png";
-		break;
-	case 'teacher':
-		$adress1="Teacher.png";
-		break;
-	case 'techie':
-		$adress1="Techie.png";
-		break;
-	case 'spirit':
-		$adress1="Spirit.png";
-		break;
-	case 'motivator':
-		$adress1="Motivator.png";
-		break;
-	case 'trendsetter':
-		$adress1="Trendsetter.png";
-		break;
-	case 'alt':
-		$adress1="Alt.png";
-		break;
-	case 'teacher':
-		$adress1="Teacher.png";
-		break;
-	default :
-		$adress1='TasteMaker.png';
+switch ($top_motivation) {
+    case 'demystifier':
+        $adress1 = 'Demystifier.png';
+        break;
+    case 'watchdog':
+        $adress1 = 'Watchdog.png';
+        break;
+    case 'professor':
+        $adress1 = 'Professor.png';
+        break;
+    case 'professional':
+        $adress1 = 'Professional.png';
+        break;
+    case 'teacher':
+        $adress1 = 'Teacher.png';
+        break;
+    case 'techie':
+        $adress1 = 'Techie.png';
+        break;
+    case 'spirit':
+        $adress1 = 'Spirit.png';
+        break;
+    case 'motivator':
+        $adress1 = 'Motivator.png';
+        break;
+    case 'trendsetter':
+        $adress1 = 'Trendsetter.png';
+        break;
+    case 'alt':
+        $adress1 = 'Alt.png';
+        break;
+    case 'teacher':
+        $adress1 = 'Teacher.png';
+        break;
+    default:
+        $adress1 = 'TasteMaker.png';
 }
 
-switch ($sec_motivation)
-{
-	case 'demystifier':
-		$adress2="Demystifier";
-		break;
-	case 'watchdog':
-		$adress2="Watchdog";
-		break;
-	case 'professor':
-		$adress2="Professor";
-		break;
-	case 'professional':
-		$adress2="Professional";
-		break;
-	case 'activist':
-		$adress2="Activist";
-		break;
-	case 'techie':
-		$adress2="Techie";
-		break;
-	case 'spirit':
-		$adress2="Spirit";
-		break;
-	case 'motivator':
-		$adress2="Motivator";
-		break;
-	case 'trendsetter':
-		$adress2="Trendsetter";
-		break;
-	case 'alt':
-		$adress2="Alt";
-		break;
-	case 'teacher':
-		$adress2="Teacher";
-		break;
-	default :
-		$adress2='TasteMaker';
+switch ($sec_motivation) {
+    case 'demystifier':
+        $adress2 = 'Demystifier';
+        break;
+    case 'watchdog':
+        $adress2 = 'Watchdog';
+        break;
+    case 'professor':
+        $adress2 = 'Professor';
+        break;
+    case 'professional':
+        $adress2 = 'Professional';
+        break;
+    case 'activist':
+        $adress2 = 'Activist';
+        break;
+    case 'techie':
+        $adress2 = 'Techie';
+        break;
+    case 'spirit':
+        $adress2 = 'Spirit';
+        break;
+    case 'motivator':
+        $adress2 = 'Motivator';
+        break;
+    case 'trendsetter':
+        $adress2 = 'Trendsetter';
+        break;
+    case 'alt':
+        $adress2 = 'Alt';
+        break;
+    case 'teacher':
+        $adress2 = 'Teacher';
+        break;
+    default:
+        $adress2 = 'TasteMaker';
 }
 
-
-switch ($third_motivation)
-{
-	case 'demystifier':
-		$adress3="Demystifier";
-		break;
-	case 'watchdog':
-		$adress3="Watchdog";
-		break;
-	case 'professor':
-		$adress3="Professor";
-		break;
-	case 'professional':
-		$adress3="Professional";
-		break;
-	case 'activist':
-		$adress3="Activist";
-		break;
-	case 'techie':
-		$adress3="Techie";
-		break;
-	case 'spirit':
-		$adress3="Spirit";
-		break;
-	case 'motivator':
-		$adress3="Motivator";
-		break;
-	case 'trendsetter':
-		$adress3="Trendsetter";
-		break;
-	case 'alt':
-		$adress3="Alt";
-		break;
-	case 'teacher':
-		$adress3="Teacher";
-		break;
-	default :
-		$adress3='TasteMaker';
+switch ($third_motivation) {
+    case 'demystifier':
+        $adress3 = 'Demystifier';
+        break;
+    case 'watchdog':
+        $adress3 = 'Watchdog';
+        break;
+    case 'professor':
+        $adress3 = 'Professor';
+        break;
+    case 'professional':
+        $adress3 = 'Professional';
+        break;
+    case 'activist':
+        $adress3 = 'Activist';
+        break;
+    case 'techie':
+        $adress3 = 'Techie';
+        break;
+    case 'spirit':
+        $adress3 = 'Spirit';
+        break;
+    case 'motivator':
+        $adress3 = 'Motivator';
+        break;
+    case 'trendsetter':
+        $adress3 = 'Trendsetter';
+        break;
+    case 'alt':
+        $adress3 = 'Alt';
+        break;
+    case 'teacher':
+        $adress3 = 'Teacher';
+        break;
+    default:
+        $adress3 = 'TasteMaker';
 }
 
-switch ($top_motivation)
-{
-	case 'demystifier':
-		$id1=1;
-		break;
-	case 'watchdog':
-		$id1=2;
-		break;
-	case 'activist':
-		$id1=3;
-		break;
-	case 'professor':
-		$id1=4;
-		break;
-	case 'professional':
-		$id1=5;
-		break;
-	case 'teacher':
-		$id1=6;
-		break;
-	case 'techie':
-		$id1=7;
-		break;
-	case 'spirit':
-		$id1=8;
-		break;
-	case 'motivator':
-		$id1=9;
-		break;
-	case 'trendsetter':
-		$id1=10;
-		break;
-	case 'alt':
-		$id1=11;
-		break;
-	default :
-		$id1=12;
+switch ($top_motivation) {
+    case 'demystifier':
+        $id1 = 1;
+        break;
+    case 'watchdog':
+        $id1 = 2;
+        break;
+    case 'activist':
+        $id1 = 3;
+        break;
+    case 'professor':
+        $id1 = 4;
+        break;
+    case 'professional':
+        $id1 = 5;
+        break;
+    case 'teacher':
+        $id1 = 6;
+        break;
+    case 'techie':
+        $id1 = 7;
+        break;
+    case 'spirit':
+        $id1 = 8;
+        break;
+    case 'motivator':
+        $id1 = 9;
+        break;
+    case 'trendsetter':
+        $id1 = 10;
+        break;
+    case 'alt':
+        $id1 = 11;
+        break;
+    default:
+        $id1 = 12;
 }
 
-switch ($sec_motivation)
-{
-	case 'demystifier':
-		$id2=1;
-		break;
-	case 'activist':
-		$id2=3;
-		break;
-	case 'watchdog':
-		$id2=2;
-		break;
-	case 'professor':
-		$id2=4;
-		break;
-	case 'professional':
-		$id2=5;
-		break;
-	case 'teacher':
-		$id2=6;
-		break;
-	case 'techie':
-		$id2=7;
-		break;
-	case 'spirit':
-		$id2=8;
-		break;
-	case 'motivator':
-		$id2=9;
-		break;
-	case 'trendsetter':
-		$id2=10;
-		break;
-	case 'alt':
-		$id2=11;
-		break;
-	default :
-		$id2=12;
+switch ($sec_motivation) {
+    case 'demystifier':
+        $id2 = 1;
+        break;
+    case 'activist':
+        $id2 = 3;
+        break;
+    case 'watchdog':
+        $id2 = 2;
+        break;
+    case 'professor':
+        $id2 = 4;
+        break;
+    case 'professional':
+        $id2 = 5;
+        break;
+    case 'teacher':
+        $id2 = 6;
+        break;
+    case 'techie':
+        $id2 = 7;
+        break;
+    case 'spirit':
+        $id2 = 8;
+        break;
+    case 'motivator':
+        $id2 = 9;
+        break;
+    case 'trendsetter':
+        $id2 = 10;
+        break;
+    case 'alt':
+        $id2 = 11;
+        break;
+    default:
+        $id2 = 12;
 }
 
-switch ($third_motivation)
-{
-	case 'demystifier':
-		$id3=1;
-		break;
-	case 'watchdog':
-		$id3=2;
-		break;
-	case 'activist':
-		$id3=3;
-		break;	
-	case 'professor':
-		$id3=4;
-		break;
-	case 'professional':
-		$id3=5;
-		break;
-	case 'teacher':
-		$id3=6;
-		break;
-	case 'techie':
-		$id3=7;
-		break;
-	case 'spirit':
-		$id3=8;
-		break;
-	case 'motivator':
-		$id3=9;
-		break;
-	case 'trendsetter':
-		$id3=10;
-		break;
-	case 'alt':
-		$id3=11;
-		break;
-	default :
-		$id3=12;
+switch ($third_motivation) {
+    case 'demystifier':
+        $id3 = 1;
+        break;
+    case 'watchdog':
+        $id3 = 2;
+        break;
+    case 'activist':
+        $id3 = 3;
+        break;
+    case 'professor':
+        $id3 = 4;
+        break;
+    case 'professional':
+        $id3 = 5;
+        break;
+    case 'teacher':
+        $id3 = 6;
+        break;
+    case 'techie':
+        $id3 = 7;
+        break;
+    case 'spirit':
+        $id3 = 8;
+        break;
+    case 'motivator':
+        $id3 = 9;
+        break;
+    case 'trendsetter':
+        $id3 = 10;
+        break;
+    case 'alt':
+        $id3 = 11;
+        break;
+    default:
+        $id3 = 12;
 }
 
 //we are querying and fetching related data
-$query1_name="SELECT `motivation_name` FROM `motivations_tr` WHERE `id`=" . "$id1";
-$query2_name="SELECT `motivation_name` FROM `motivations_tr` WHERE `id`=" . "$id2";
-$query3_name="SELECT `motivation_name` FROM `motivations_tr` WHERE `id`=" . "$id3";
-$query1_explanation="SELECT `summary` FROM `motivations_tr` WHERE `id`=" . "$id1";
-$query2_explanation="SELECT `summary` FROM `motivations_tr` WHERE `id`=" . "$id2";
-$query3_explanation="SELECT `summary` FROM `motivations_tr` WHERE `id`=" . "$id3";
+$query1_name = 'SELECT `motivation_name` FROM `motivations_tr` WHERE `id`='."$id1";
+$query2_name = 'SELECT `motivation_name` FROM `motivations_tr` WHERE `id`='."$id2";
+$query3_name = 'SELECT `motivation_name` FROM `motivations_tr` WHERE `id`='."$id3";
+$query1_explanation = 'SELECT `summary` FROM `motivations_tr` WHERE `id`='."$id1";
+$query2_explanation = 'SELECT `summary` FROM `motivations_tr` WHERE `id`='."$id2";
+$query3_explanation = 'SELECT `summary` FROM `motivations_tr` WHERE `id`='."$id3";
 //they are name of motivations
-$name1_result=mysqli_query($conn,$query1_name);
-$name2_result=mysqli_query($conn,$query2_name);
-$name3_result=mysqli_query($conn,$query3_name);
+$name1_result = mysqli_query($conn, $query1_name);
+$name2_result = mysqli_query($conn, $query2_name);
+$name3_result = mysqli_query($conn, $query3_name);
 //they are explanation of motivations
-$explanation1_result=mysqli_query($conn,$query1_explanation);
-$explanation2_result=mysqli_query($conn,$query2_explanation);
-$explanation3_result=mysqli_query($conn,$query3_explanation);
+$explanation1_result = mysqli_query($conn, $query1_explanation);
+$explanation2_result = mysqli_query($conn, $query2_explanation);
+$explanation3_result = mysqli_query($conn, $query3_explanation);
 
 //OUR QUERY RESULTS ARE assoc  ARRAY AND WE SHOULD convert them to string these foreach loops are for that process
-foreach ($name1_result as $name1_result_)
-	foreach ($name1_result_ as $key1=> $val1)
-		$string_name1 = $val1;
-		
-foreach ($name2_result as $name2_result_)
-	foreach ($name2_result_ as $key2=> $val2)
-		 $string_name2 = $val2;
+foreach ($name1_result as $name1_result_) {
+    foreach ($name1_result_ as $key1=> $val1) {
+        $string_name1 = $val1;
+    }
+}
 
-foreach ($name3_result as $name3_result_)
-	foreach ($name3_result_ as $key3=> $val3)
-		 $string_name3 = $val3;
+foreach ($name2_result as $name2_result_) {
+    foreach ($name2_result_ as $key2=> $val2) {
+        $string_name2 = $val2;
+    }
+}
 
-foreach ($explanation1_result as $explanation1_result_)
-	foreach ($explanation1_result_ as $key4=> $val4)
-		 $string_explanation1 = $val4;
+foreach ($name3_result as $name3_result_) {
+    foreach ($name3_result_ as $key3=> $val3) {
+        $string_name3 = $val3;
+    }
+}
 
-foreach ($explanation2_result as $explanation2_result_)
-	foreach ($explanation2_result_ as $key5=> $val5)
-		 $string_explanation2 = $val5;
+foreach ($explanation1_result as $explanation1_result_) {
+    foreach ($explanation1_result_ as $key4=> $val4) {
+        $string_explanation1 = $val4;
+    }
+}
 
-foreach ($explanation3_result as $explanation3_result_)
-	foreach ($explanation3_result_ as $key6=> $val6)
-		 $string_explanation3 = $val6;
+foreach ($explanation2_result as $explanation2_result_) {
+    foreach ($explanation2_result_ as $key5=> $val5) {
+        $string_explanation2 = $val5;
+    }
+}
 
+foreach ($explanation3_result as $explanation3_result_) {
+    foreach ($explanation3_result_ as $key6=> $val6) {
+        $string_explanation3 = $val6;
+    }
+}
 
 ?>
 
@@ -500,7 +489,7 @@ foreach ($explanation3_result as $explanation3_result_)
                <thead>
               		<tr>
               			<th style="float:right;"><p class="text-danger"><b><?php
-							echo "$protect_point"?></b></p></th>
+                            echo "$protect_point"?></b></p></th>
               			<th style="float:right;"><p><b>Korumacı</b></p></th>
               			
               		</tr>
@@ -519,7 +508,7 @@ foreach ($explanation3_result as $explanation3_result_)
                <thead>
               		<tr>
               			<th style="float:left;"><p class="text-danger"><b><?php
-							echo "$empower_point"?></b></p></th>
+                            echo "$empower_point"?></b></p></th>
               			<th style="float:left;"><p><b>Güçlendirici</b></p></th>
               		</tr>
                </thead>
@@ -541,7 +530,7 @@ foreach ($explanation3_result as $explanation3_result_)
                 <div><a href="motivation.php?motivation=AYDINLATICI"><img src="../img/motivationiconsArtboard-1.png"></a></div>
             </div>
             <div class="col-md-1">
-                <div><strong style="font-size:3em;"><?php echo $motivation_point['demystifier'];?></strong></div>
+                <div><strong style="font-size:3em;"><?php echo $motivation_point['demystifier']; ?></strong></div>
             </div>
         </div>
         <div>
@@ -549,7 +538,7 @@ foreach ($explanation3_result as $explanation3_result_)
                 <div><a href="motivation.php?motivation=MUHAFIZ"><img src="../img/motivationiconsArtboard-2.png"></a></div>
             </div>
             <div class="col-md-1">
-                <div><strong style="font-size:3em;"><?php echo $motivation_point['watchdog'];?></strong></div>
+                <div><strong style="font-size:3em;"><?php echo $motivation_point['watchdog']; ?></strong></div>
             </div>
            
         </div>
@@ -558,7 +547,7 @@ foreach ($explanation3_result as $explanation3_result_)
                 <div><a href="motivation.php?motivation=AKTİVİST"><img src="../img/motivationiconsArtboard-3.png"></a></div>
             </div>
             <div class="col-md-1">
-                <div><strong style="font-size:3em;"><?php echo $motivation_point['activist'];?></strong></div>
+                <div><strong style="font-size:3em;"><?php echo $motivation_point['activist']; ?></strong></div>
             </div>
         </div>
     </div>
@@ -568,7 +557,7 @@ foreach ($explanation3_result as $explanation3_result_)
                 <div><a href="motivation.php?motivation=EĞİTMEN"><img src="../img/motivationiconsArtboard-4.png"></a></div>
             </div>
             <div class="col-md-1">
-                <div><strong style="font-size:3em;"><?php echo $motivation_point['professor'];?></strong></div>
+                <div><strong style="font-size:3em;"><?php echo $motivation_point['professor']; ?></strong></div>
             </div>
         </div>
         <div>
@@ -576,7 +565,7 @@ foreach ($explanation3_result as $explanation3_result_)
                 <div><a href="motivation.php?motivation=PROFESYONEL"><img src="../img/motivationiconsArtboard-5.png"></a></div>
             </div>
             <div class="col-md-1">
-                <div><strong style="font-size:3em;"><?php echo $motivation_point['professional'];?></strong></div>
+                <div><strong style="font-size:3em;"><?php echo $motivation_point['professional']; ?></strong></div>
             </div>
         </div>
         <div>
@@ -584,7 +573,7 @@ foreach ($explanation3_result as $explanation3_result_)
                 <div><a href="motivation.php?motivation=ÖĞRETMEN 2.0"><img src="../img/motivationiconsArtboard-6.png"></a></div>
             </div>
             <div class="col-md-1">
-                <div><<strong style="font-size:3em;"><?php echo $motivation_point['teacher'];?></strong></div>
+                <div><<strong style="font-size:3em;"><?php echo $motivation_point['teacher']; ?></strong></div>
             </div>
         </div>
     </div>
@@ -594,7 +583,7 @@ foreach ($explanation3_result as $explanation3_result_)
                 <div><a href="motivation.php?motivation=TEKNOLOJİ TUTKUNU"><img src="../img/motivationiconsArtboard-7.png"></a></div>
             </div>
             <div class="col-md-1">
-                <div><strong style="font-size:3em;"><?php echo $motivation_point['techie'];?></strong></div>
+                <div><strong style="font-size:3em;"><?php echo $motivation_point['techie']; ?></strong></div>
             </div>
         </div>
         <div>
@@ -602,7 +591,7 @@ foreach ($explanation3_result as $explanation3_result_)
                 <div><a href="motivation.php?motivation=SIRDAŞ"><img src="../img/motivationiconsArtboard-8.png"></a></div>
             </div>
             <div class="col-md-1">
-                <div><strong style="font-size:3em;"><?php echo $motivation_point['spirit'];?></strong></div>
+                <div><strong style="font-size:3em;"><?php echo $motivation_point['spirit']; ?></strong></div>
             </div>
         </div>
         <div> 
@@ -610,7 +599,7 @@ foreach ($explanation3_result as $explanation3_result_)
                 <div><a href="motivation.php?motivation=TEŞVİK EDİCİ"><img src="../img/motivationiconsArtboard-9.png"></a></div>
             </div>
             <div class="col-md-1">
-                <div><strong style="font-size:3em;"><?php echo $motivation_point['motivator'];?></strong></div>
+                <div><strong style="font-size:3em;"><?php echo $motivation_point['motivator']; ?></strong></div>
             </div>
         </div>
     </div>
@@ -620,7 +609,7 @@ foreach ($explanation3_result as $explanation3_result_)
                 <div><a href="motivation.php?motivation=MODAYI YAKALAYAN"><img src="../img/motivationiconsArtboard-10.png"></a></div>
             </div>
             <div class="col-md-1">
-                <div><strong style="font-size:3em;"><?php echo $motivation_point['trendsetter'];?></strong></div>
+                <div><strong style="font-size:3em;"><?php echo $motivation_point['trendsetter']; ?></strong></div>
 
             </div>
         </div>
@@ -629,7 +618,7 @@ foreach ($explanation3_result as $explanation3_result_)
                 <div><a href="motivation.php?motivation=ÖZGÜN"><img src="../img/motivationiconsArtboard-11.png"></a></div>
             </div>
             <div class="col-md-1">
-                <div><strong style="font-size:3em;"><?php echo $motivation_point['alt'];?></strong></div>
+                <div><strong style="font-size:3em;"><?php echo $motivation_point['alt']; ?></strong></div>
             </div>
         </div>
         <div>
