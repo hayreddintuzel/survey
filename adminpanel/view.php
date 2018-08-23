@@ -2,43 +2,35 @@
 
 // Initialize the session
 session_start();
- 
+
 // If session variable is not set it will redirect to login page
-if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
-  header("location: login.php");
-  exit;
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
+    header('location: login.php');
+    exit;
 }?>
  
 
 <?php
 //including the database connection file
-include_once("../config.ini.php");
-$queryall="SELECT * FROM groups ORDER BY id DESC";
+include_once '../config.ini.php';
+$queryall = 'SELECT * FROM groups ORDER BY id DESC';
 //fetching data in descending order (lastest entry first)
-$queryall_for_results="SELECT * FROM results ORDER BY id DESC";
-$query_for_users="SELECT * FROM users ORDER BY id DESC";
+$queryall_for_results = 'SELECT * FROM results ORDER BY id DESC';
+$query_for_users = 'SELECT * FROM users ORDER BY id DESC';
 
-
-
-if($result = mysqli_query($conn,$queryall) )
-{
-}else
-{
-	echo "Group DB connection error!<br/>";
+if ($result = mysqli_query($conn, $queryall)) {
+} else {
+    echo 'Group DB connection error!<br/>';
 }
 
-if($result_result = mysqli_query($conn,$queryall_for_results) )
-{
-}else
-{
-	echo "Results DB connection error!<br/>";
+if ($result_result = mysqli_query($conn, $queryall_for_results)) {
+} else {
+    echo 'Results DB connection error!<br/>';
 }
 
-if($result_result_result = mysqli_query($conn,$query_for_users) )
-{
-}else
-{
-	echo "Results DB connection error!<br/>";
+if ($result_result_result = mysqli_query($conn, $query_for_users)) {
+} else {
+    echo 'Results DB connection error!<br/>';
 }
 
 ?>
@@ -70,12 +62,12 @@ if($result_result_result = mysqli_query($conn,$query_for_users) )
     	</tr>	
     </thead>
     <?php
-    while($res = mysqli_fetch_array($result)) {        
-        echo "<tr>";
-		echo "<td>".$res['id']."</td>";
-        echo "<td>".$res['group_name']."</td>";
-        echo "<td>".$res['group_pin']."</td>"; 
-        echo "<td><a href=\"edit.php?id=$res[id]\" class=\"btn btn-warning\" >Edit</a>  <a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\" class=\"btn btn-danger\">Delete</a></td>";        
+    while ($res = mysqli_fetch_array($result)) {
+        echo '<tr>';
+        echo '<td>'.$res['id'].'</td>';
+        echo '<td>'.$res['group_name'].'</td>';
+        echo '<td>'.$res['group_pin'].'</td>';
+        echo "<td><a href=\"edit.php?id=$res[id]\" class=\"btn btn-warning\" >Edit</a>  <a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\" class=\"btn btn-danger\">Delete</a></td>";
     }
     ?>
 </table>
@@ -113,27 +105,27 @@ if($result_result_result = mysqli_query($conn,$query_for_users) )
     		</tr>
     	</thead>
     <?php
-    while($res = mysqli_fetch_array($result_result)) {        
-        echo "<tr>";
-		echo "<td>".$res['id']."</td>";
-        echo "<td>".$res['group_name']."</td>";
-        echo "<td>".$res['user_name']."</td>"; 
-		echo "<td>".$res['motivation_one']."</td>";
-		echo "<td>".$res['motivation_two']."</td>";
-		echo "<td>".$res['motivation_three']."</td>";
-		echo "<td>".$res['demystifier_point']."</td>";
-		echo "<td>".$res['watchdog_point']."</td>";
-		echo "<td>".$res['activist_point']."</td>";
-		echo "<td>".$res['professor_point']."</td>";
-		echo "<td>".$res['professional_point']."</td>";
-		echo "<td>".$res['teacher_point']."</td>";
-		echo "<td>".$res['techie_point']."</td>";
-		echo "<td>".$res['spirit_point']."</td>";
-		echo "<td>".$res['motivator_point']."</td>";
-		echo "<td>".$res['trendsetter_point']."</td>";
-		echo "<td>".$res['alt_point']."</td>";
-		echo "<td>".$res['tastemaker_point']."</td>";		
-        echo "<td><a href=\"deleteresult.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\" class=\"btn btn-danger\">Delete</a></td>";        
+    while ($res = mysqli_fetch_array($result_result)) {
+        echo '<tr>';
+        echo '<td>'.$res['id'].'</td>';
+        echo '<td>'.$res['group_name'].'</td>';
+        echo '<td>'.$res['user_name'].'</td>';
+        echo '<td>'.$res['motivation_one'].'</td>';
+        echo '<td>'.$res['motivation_two'].'</td>';
+        echo '<td>'.$res['motivation_three'].'</td>';
+        echo '<td>'.$res['demystifier_point'].'</td>';
+        echo '<td>'.$res['watchdog_point'].'</td>';
+        echo '<td>'.$res['activist_point'].'</td>';
+        echo '<td>'.$res['professor_point'].'</td>';
+        echo '<td>'.$res['professional_point'].'</td>';
+        echo '<td>'.$res['teacher_point'].'</td>';
+        echo '<td>'.$res['techie_point'].'</td>';
+        echo '<td>'.$res['spirit_point'].'</td>';
+        echo '<td>'.$res['motivator_point'].'</td>';
+        echo '<td>'.$res['trendsetter_point'].'</td>';
+        echo '<td>'.$res['alt_point'].'</td>';
+        echo '<td>'.$res['tastemaker_point'].'</td>';
+        echo "<td><a href=\"deleteresult.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\" class=\"btn btn-danger\">Delete</a></td>";
     }
     ?>
 </table>
@@ -155,12 +147,12 @@ if($result_result_result = mysqli_query($conn,$query_for_users) )
     	</tr>	
     </thead>
     <?php
-    while($res = mysqli_fetch_array($result_result_result)) {        
-        echo "<tr>";
-		echo "<td>".$res['id']."</td>";
-        echo "<td>".$res['username']."</td>";
-        echo "<td>".$res['password']."</td>"; 
-        echo "<td><a href=\"deleteuser.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\" class=\"btn btn-danger\">Delete</a></td>";        
+    while ($res = mysqli_fetch_array($result_result_result)) {
+        echo '<tr>';
+        echo '<td>'.$res['id'].'</td>';
+        echo '<td>'.$res['username'].'</td>';
+        echo '<td>'.$res['password'].'</td>';
+        echo "<td><a href=\"deleteuser.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\" class=\"btn btn-danger\">Delete</a></td>";
     }
     ?>
 </table>

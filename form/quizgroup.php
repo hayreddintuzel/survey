@@ -33,22 +33,20 @@
 
 
 <?php
-	
+
 require_once '../config.ini.php';
-	
+
 //there are important for creating a text compatable with turkish language (f.e.:ş,ç,ğ etc.)
-$sql = "SELECT no, text, lang FROM questions";
-$sql_utf1= "SET NAMES 'utf8'";
-$sql_utf2= "CHARSET 'utf8';";
+$sql = 'SELECT no, text, lang FROM questions';
+$sql_utf1 = "SET NAMES 'utf8'";
+$sql_utf2 = "CHARSET 'utf8';";
 $conn->query($sql_utf1);
 $conn->query($sql_utf2);
 $result = $conn->query($sql);
-	
-// we create a counter variable for numarate the question's input in the form.
-$counter=1;
-	
 
-			
+// we create a counter variable for numarate the question's input in the form.
+$counter = 1;
+
 ?>
 <div id="main" class="container">
 
@@ -119,40 +117,39 @@ $counter=1;
 			
 			
 			<?php
-			if ($result->num_rows > 0) {
-				// output data of each row
-				while($row = $result->fetch_assoc()) {
-					// we use counter variable for creating unique input names for each questions
-					$a_temp1='<label class="radio-inline">
-					<input type="radio" name="opt_q' . $counter . '" value="5" >
+            if ($result->num_rows > 0) {
+                // output data of each row
+                while ($row = $result->fetch_assoc()) {
+                    // we use counter variable for creating unique input names for each questions
+                    $a_temp1 = '<label class="radio-inline">
+					<input type="radio" name="opt_q'.$counter.'" value="5" >
 					</label>';
-			$a_temp2='<label class="radio-inline">
-					<input type="radio" name="opt_q' . $counter . '" value="4" >
+                    $a_temp2 = '<label class="radio-inline">
+					<input type="radio" name="opt_q'.$counter.'" value="4" >
 					</label>';
-			$a_temp3='<label class="radio-inline">
-					<input type="radio" name="opt_q' . $counter . '" value="3" checked>
+                    $a_temp3 = '<label class="radio-inline">
+					<input type="radio" name="opt_q'.$counter.'" value="3" checked>
 					</label>';
-			$a_temp4='<label class="radio-inline">
-					<input type="radio" name="opt_q' . $counter . '" value="2" >
+                    $a_temp4 = '<label class="radio-inline">
+					<input type="radio" name="opt_q'.$counter.'" value="2" >
 					</label>';
-			$a_temp5='<label class="radio-inline">
-					<input type="radio" name="opt_q' . $counter . '" value="1" >
+                    $a_temp5 = '<label class="radio-inline">
+					<input type="radio" name="opt_q'.$counter.'" value="1" >
 					</label>';
-			
 
-					echo "<tr>
-							<td>" . $row["no"] ."- ". $row["text"] . "</td>
-							<td>" . $a_temp1 .  "</td>
-							<td>" . $a_temp2 .  "</td>
-							<td>" . $a_temp3 .  "</td>
-							<td>" . $a_temp4 .  "</td>
-							<td>" . $a_temp5 . "</td>
-						 </tr>";
-					$counter++;
-    			}
-			} else {
-    			echo "0 results";
-			}?>
+                    echo '<tr>
+							<td>'.$row['no'].'- '.$row['text'].'</td>
+							<td>'.$a_temp1.'</td>
+							<td>'.$a_temp2.'</td>
+							<td>'.$a_temp3.'</td>
+							<td>'.$a_temp4.'</td>
+							<td>'.$a_temp5.'</td>
+						 </tr>';
+                    $counter++;
+                }
+            } else {
+                echo '0 results';
+            }?>
 				<tr>
 					<td></td>
 					<td></td>
